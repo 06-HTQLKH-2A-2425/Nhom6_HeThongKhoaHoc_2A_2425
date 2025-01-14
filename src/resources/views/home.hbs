@@ -1,0 +1,48 @@
+<div class='container mt-4'>
+    <div class='row'>
+        <div class='col-12 col-md-2 col-lg-2'>
+            <nav class='navbar navbar-light bg-light'>
+                <ul class='navbar-nav'>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='#'>Trang chủ</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='#'>Khóa học</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='#'>Liên hệ</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class='col-12 col-md-10 col-lg-10'>
+            <div class='row'>
+                {{#each courses}}
+                    <div class='col-12 col-sm-6 col-lg-4'>
+                        <div
+                            class='card card-courses-item'
+                            style='width: 18rem;'
+                        >
+                            <a href='/courses/{{this.slug}}'>
+                                <img
+                                    src='{{this.image}}'
+                                    class='card-img-top'
+                                    alt='{{this.name}}'
+                                />
+                            </a>
+                            <div class='card-body'>
+                                <a href='/courses/{{this.slug}}'>
+                                    <h5 class='card-title'>{{this.name}}</h5>
+                                </a>
+
+                                <p class='card-text'>{{this.description}}</p>
+                                <a href='#' class='btn btn-primary'>Mua khoá học</a>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
