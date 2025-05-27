@@ -1,4 +1,4 @@
-const express = require('express'); //require là cú pháp để import thư viện vào
+const express = require('express');
 const router = express.Router();
 
 const courseController = require('../app/controllers/CourseController');

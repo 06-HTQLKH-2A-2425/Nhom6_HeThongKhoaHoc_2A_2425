@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const Schema = mongoose.Schema;
 
-const Course = new Schema(
+const CourseSchema = new Schema(
     {
         name: { type: String, required: true },
         description: { type: String },
@@ -19,10 +19,21 @@ const Course = new Schema(
     }
 );
 
+//custom query helpers
+CourseSchema.query.sortable = function(req) {
+    if(req.query.hasOwnProperty('_sort')) {
+        const isValidtype = ['asc','desc'].includes(req.query.type);
+        return this.sort({
+            [req.query.column]: isValidtype ? req.query.type : 'desc',
+        });
+    }
+    return this;
+}
+
 //add plugins
-Course.plugin(mongooseDelete, {
+CourseSchema.plugin(mongooseDelete, {
     deletedAt: true,
     overrideMethods: 'all',
 });
 
-module.exports = mongoose.model('Course', Course);
+module.exports = mongoose.model('Course', CourseSchema);
